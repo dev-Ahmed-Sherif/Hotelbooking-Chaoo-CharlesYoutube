@@ -11,6 +11,7 @@ import { ThemeProvider } from "@/providers/theme-provider";
 
 import NavBar from "@/components/layout/NavBar";
 import Container from "@/components/Container";
+import LocationFilter from "@/components/LocationFilter";
 import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -42,6 +43,7 @@ export default function RootLayout({
           <ThemeProvider attribute="class" enableSystem>
             <main className="flex flex-col min-h-screen bg-secondary">
               <NavBar />
+              <LocationFilter />
               <section className="flex-grow">
                 <Container>{children}</Container>
               </section>

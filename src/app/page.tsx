@@ -1,6 +1,5 @@
 import { getHotels } from "@/actions/getHotels";
 import HotelList from "@/components/hotel/HotelList";
-import Image from "next/image";
 
 type HomeProps = {
   searchParams: {
