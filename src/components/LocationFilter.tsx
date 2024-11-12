@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/select";
 import useLocation from "@/hooks/useLocation";
 import { ICity, IState } from "country-state-city";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Button } from "./ui/button";
 
 const LocationFilter = () => {
@@ -23,11 +23,12 @@ const LocationFilter = () => {
   const [states, setStates] = useState<IState[]>([]);
   const [cities, setCities] = useState<ICity[]>([]);
 
-  const { getAllCountries, getCountryStates, getStateCities } = useLocation();
-  const countries = getAllCountries();
-
   const router = useRouter();
   const params = useSearchParams();
+  const pathname = usePathname();
+
+  const { getAllCountries, getCountryStates, getStateCities } = useLocation();
+  const countries = getAllCountries();
 
   useEffect(() => {
     const countryStates = getCountryStates(country);
@@ -98,6 +99,8 @@ const LocationFilter = () => {
     setCity("");
     router.push("/");
   };
+
+  if (pathname !== "/") return null;
 
   return (
     <Container>
