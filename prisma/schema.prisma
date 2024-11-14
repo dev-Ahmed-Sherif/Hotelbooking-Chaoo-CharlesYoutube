@@ -5,9 +5,11 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 datasource db {
-  provider     = "mysql"
-  url          = env("DATABASE_URL")
-  relationMode = "prisma"
+  // provider     = "mysql"
+  // url          = env("DATABASE_URL")
+  // relationMode = "prisma"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 generator client {
@@ -19,12 +21,12 @@ model Hotel {
   id                  String   @id @default(uuid())
   userId              String
   title               String   @db.Text
-  description         String   @db.LongText
+  description         String   @db.Text
   image               String
   country             String
   state               String
   city                String
-  locationDescription String   @db.LongText
+  locationDescription String   @db.Text
   gym                 Boolean  @default(false)
   spa                 Boolean  @default(false)
   bar                 Boolean  @default(false)
@@ -42,13 +44,13 @@ model Hotel {
   rooms    Room[]
   bookings Booking[]
 
-  @@fulltext([title])
+  // @@fulltext([title])
 }
 
 model Room {
   id             String  @id @default(uuid())
   title          String
-  description    String  @db.LongText
+  description    String  @db.Text
   bedCount       Int     @default(0)
   guestCount     Int     @default(0)
   bathroomCount  Int     @default(0)
